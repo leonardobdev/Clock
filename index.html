@@ -31,11 +31,11 @@
 			};
 			let loop = function() {
 				let t = time.fullYear;
-				t += "/" + (time.month > 10 ? time.month: "0" + time.month);
-				t += "/" + (time.day > 10 ? time.day: "0" + time.day);
-				t += " " + (time.hours > 10 ? time.hours: "0" + time.hours);
-				t += ":" + (time.minutes > 10 ? time.minutes: "0" + time.minutes);
-				t += ":" + (time.seconds > 10 ? time.seconds: "0" + time.seconds);
+				t += "/" + (time.month < 10 ? "0" : "") + time.month;
+				t += "/" + (time.day < 10 ? "0" : "") + time.day;
+				t += " " + (time.hours < 10 ? "0" : "") + time.hours;
+				t += ":" + (time.minutes < 10 ? "0" : "") + time.minutes;
+				t += ":" + (time.seconds < 10 ? "0" : "") + time.seconds;
 				document.body.innerText = t;
 				if (time.seconds >= 59) {
 					time.seconds = 0;
