@@ -37,11 +37,11 @@
 				t += ":" + (time.minutes > 10 ? time.minutes: "0" + time.minutes);
 				t += ":" + (time.seconds > 10 ? time.seconds: "0" + time.seconds);
 				document.body.innerText = t;
-				if (time.seconds > 59) {
+				if (time.seconds >= 59) {
 					time.seconds = 0;
-					if (time.minutes > 59) {
+					if (time.minutes >= 59) {
 						time.minutes = 0;
-						if (time.hours > 23) {
+						if (time.hours >= 23) {
 							time.hours = 0;
 							sync();
 						} else {
