@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Clock</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script>
+		window.onload = function() {
+			let date;
+			let time = {
+				"fullYear": 0,
+				"month": 0,
+				"day": 0,
+				"hours": 0,
+				"minutes": 0,
+				"seconds": 0
+			};
+			let sync = function() {
+				let xhr = new XMLHttpRequest();
+				xhr.open("get", "https://worldtimeapi.org/api/timezone/America/Sao_Paulo", false);
+				xhr.onload = function(e) {
+					date = new Date(JSON.parse(xhr.response).datetime);
+					time.fullYear = date.getFullYear();
+					time.month = date.getMonth();
+					time.day = date.getDay();
+					time.hours = date.getHours();
+					time.minutes = date.getMinutes();
+					time.seconds = date.getSeconds();
+				};
+				xhr.send();
+			};
+			let loop = function() {
+				let t = time.fullYear;
+				t += "/" + (time.month > 10 ? time.month: "0" + time.month);
+				t += "/" + (time.day > 10 ? time.day: "0" + time.day);
+				t += " " + (time.hours > 10 ? time.hours: "0" + time.hours);
+				t += ":" + (time.minutes > 10 ? time.minutes: "0" + time.minutes);
+				t += ":" + (time.seconds > 10 ? time.seconds: "0" + time.seconds);
+				document.body.innerText = t;
+				if (time.seconds > 59) {
+					time.seconds = 0;
+					if (time.minutes > 59) {
+						time.minutes = 0;
+						if (time.hours > 23) {
+							time.hours = 0;
+							sync();
+						} else {
+							time.hours++;
+						}
+					} else {
+						time.minutes++;
+					}
+				} else {
+					time.seconds++;
+				}
+				setTimeout(loop, 1000);
+			};
+			sync();
+			loop();
+		};
+	</script>
+</head>
+<body></body>
+</html>
