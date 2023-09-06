@@ -30,9 +30,10 @@
 				xhr.send();
 			};
 			let loop = function() {
-				let t = time.fullYear;
-				t += "/" + (time.month < 10 ? "0" : "") + time.month;
-				t += "/" + (time.day < 10 ? "0" : "") + time.day;
+				let t = ""
+				//t += time.fullYear;
+				//t += "/" + (time.month < 10 ? "0" : "") + time.month;
+				//t += "/" + (time.day < 10 ? "0" : "") + time.day;
 				t += " " + (time.hours < 10 ? "0" : "") + time.hours;
 				t += ":" + (time.minutes < 10 ? "0" : "") + time.minutes;
 				t += ":" + (time.seconds < 10 ? "0" : "") + time.seconds;
