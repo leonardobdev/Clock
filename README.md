@@ -1,3 +1,3 @@
 # Clock
 
-https://leonardobdev.github.io/Clock/
+https://leonardobdev.github.io/clock/
